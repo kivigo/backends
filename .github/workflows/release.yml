@@ -32,6 +32,11 @@ permissions:
           - major
           - minor
           - patch
+      latest:
+        description: 'Also create/update the "latest" tag for this backend'
+        required: true
+        default: true
+        type: boolean
 
 jobs:
   discover-backends:
@@ -66,6 +71,7 @@ jobs:
     outputs:
       version: ${{ steps.validate.outputs.version }}
       backend_name: ${{ steps.validate.outputs.backend_name }}
+      latest: ${{ steps.validate.outputs.latest }}
     steps:
       - name: 🔍 Validate version and backend_name
         id: validate
@@ -74,6 +80,7 @@ jobs:
           backend_name="${{ github.event.inputs.backend_name }}"
           automatic_tag="${{ github.event.inputs.automatic_tag }}"
           bump="${{ github.event.inputs.bump }}"
+          latest="${{ github.event.inputs.latest }}"
           backends='${{ needs.discover-backends.outputs.backends }}'
 
           # Check backend_name
@@ -102,7 +109,6 @@ jobs:
             if [[ -z "$latest_tag" ]]; then
               new_version="v1.0.0"
             else
-              # Remove prefix if needed
               tag_version="${latest_tag#${prefix}}"
               IFS='.' read -r major minor patch <<<"${tag_version#v}"
               case "$bump" in
@@ -131,9 +137,10 @@ jobs:
 
           echo "version=$version" >> $GITHUB_OUTPUT
           echo "backend_name=$backend_name" >> $GITHUB_OUTPUT
+          echo "latest=$latest" >> $GITHUB_OUTPUT
 
   create-tag:
-    name: 🏷️ Create and Push Tag
+    name: 🏷️ Create and Push Tag(s)
     runs-on: ubuntu-latest
     needs: validate-inputs
     steps:
@@ -143,15 +150,19 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🏷️ Create and push tag (with existence check)
+      - name: 🏷️ Create and push version tag (with existence check)
+        id: tag
         run: |
           version="${{ needs.validate-inputs.outputs.version }}"
           backend_name="${{ needs.validate-inputs.outputs.backend_name }}"
+          latest="${{ needs.validate-inputs.outputs.latest }}"
 
           if [[ "$backend_name" == "core" ]]; then
             tag="$version"
+            latest_tag="latest"
           else
             tag="${backend_name}/${version}"
+            latest_tag="${backend_name}/latest"
           fi
 
           # Check if tag already exists locally or remotely
@@ -167,7 +178,20 @@ jobs:
 
           git tag "$tag"
           echo "✅ Created tag: $tag"
-
-          echo "Pushing tag $tag..."
           git push origin "$tag"
           echo "📤 Pushed tag: $tag"
+
+          # Create/update latest tag if requested
+          if [[ "$latest" == "true" ]]; then
+            # Delete remote latest tag if exists
+            if git ls-remote --tags origin | grep -q "refs/tags/${latest_tag}$"; then
+              git push --delete origin "$latest_tag"
+            fi
+            # Delete local latest tag if exists
+            if git tag -l | grep -q "^${latest_tag}$"; then
+              git tag -d "$latest_tag"
+            fi
+            git tag "$latest_tag"
+            git push origin "$latest_tag"
+            echo "📤 Pushed tag: $latest_tag"
+          fi

@@ -1,0 +1,122 @@
+name: 🚀 Release
+
+permissions:
+  contents: write
+  actions: write
+  attestations: write
+  pages: write
+  id-token: write
+
+"on":
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.5.0)'
+        required: true
+        type: string
+      backend_name:
+        description: 'Backend to release (e.g., badger, redis, etcd, consul, local, or "core")'
+        required: true
+        type: string
+
+jobs:
+  discover-backends:
+    name: 🔍 Discover Backends
+    runs-on: ubuntu-latest
+    outputs:
+      backends: ${{ steps.discover.outputs.backends }}
+    steps:
+      - name: 🛎️ Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔍 Discover backends
+        id: discover
+        run: |
+          backends=$(find backend -mindepth 1 -maxdepth 1 -type d | sort)
+          backend_list=()
+          for backend in $backends; do
+            if [[ -f "$backend/go.mod" ]]; then
+              backend_name=$(basename "$backend")
+              backend_list+=("$backend_name")
+              echo "✅ Found backend: $backend_name"
+            fi
+          done
+          backends_json=$(printf '%s\n' "${backend_list[@]}" | jq -R . | jq -s . | jq -c .)
+          echo "backends=$backends_json" >> $GITHUB_OUTPUT
+          echo "📦 Discovered backends: $backends_json"
+
+  validate-inputs:
+    name: 🔍 Validate Inputs
+    runs-on: ubuntu-latest
+    needs: discover-backends
+    outputs:
+      version: ${{ steps.validate.outputs.version }}
+      backend_name: ${{ steps.validate.outputs.backend_name }}
+    steps:
+      - name: 🔍 Validate version and backend_name
+        id: validate
+        run: |
+          version="${{ github.event.inputs.version }}"
+          backend_name="${{ github.event.inputs.backend_name }}"
+          backends='${{ needs.discover-backends.outputs.backends }}'
+
+          # Check version format
+          if [[ ! "$version" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "❌ Error: Version must follow semantic versioning format (e.g., v1.5.0)"
+            exit 1
+          fi
+
+          # Check backend_name
+          if [[ "$backend_name" == "core" ]]; then
+            echo "✅ Releasing core"
+          else
+            found=$(echo "$backends" | jq -r '.[]' | grep -Fx "$backend_name" || true)
+            if [[ -z "$found" ]]; then
+              echo "❌ Error: Backend '$backend_name' does not exist."
+              exit 1
+            fi
+            echo "✅ Backend to release: $backend_name"
+          fi
+
+          echo "version=$version" >> $GITHUB_OUTPUT
+          echo "backend_name=$backend_name" >> $GITHUB_OUTPUT
+
+  create-tag:
+    name: 🏷️ Create and Push Tag
+    runs-on: ubuntu-latest
+    needs: validate-inputs
+    steps:
+      - name: 🛎️ Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏷️ Create and push tag (with existence check)
+        run: |
+          version="${{ needs.validate-inputs.outputs.version }}"
+          backend_name="${{ needs.validate-inputs.outputs.backend_name }}"
+
+          if [[ "$backend_name" == "core" ]]; then
+            tag="$version"
+          else
+            tag="${backend_name}/${version}"
+          fi
+
+          # Check if tag already exists locally or remotely
+          git fetch --tags
+          if git tag -l | grep -q "^${tag}$"; then
+            echo "⚠️ Tag $tag already exists locally"
+            exit 1
+          fi
+          if git ls-remote --tags origin | grep -q "refs/tags/${tag}$"; then
+            echo "⚠️ Tag $tag already exists remotely"
+            exit 1
+          fi
+
+          git tag "$tag"
+          echo "✅ Created tag: $tag"
+
+          echo "Pushing tag $tag..."
+          git push origin "$tag"
+          echo "📤 Pushed tag: $tag"

@@ -7,6 +7,10 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: release-${{ github.event.inputs.backend_name }}
+  cancel-in-progress: false
+
 "on":
   workflow_dispatch:
     inputs:
@@ -51,7 +55,7 @@ jobs:
       - name: 🔍 Discover backends
         id: discover
         run: |
-          backends=$(find backend -mindepth 1 -maxdepth 1 -type d | sort)
+          backends=$(find . -mindepth 1 -maxdepth 1 -type d | sort)
           backend_list=()
           for backend in $backends; do
             if [[ -f "$backend/go.mod" ]]; then

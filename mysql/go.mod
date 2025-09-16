@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/mysql
+module github.com/kivigo/backends/mysql
 
 go 1.24.0
 

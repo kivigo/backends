@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/etcd
+module github.com/kivigo/backends/etcd
 
 go 1.24.0
 

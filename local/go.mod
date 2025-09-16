@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/local
+module github.com/kivigo/backends/local
 
 go 1.24.5
 

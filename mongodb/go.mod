@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/mongodb
+module github.com/kivigo/backends/mongodb
 
 go 1.24.0
 

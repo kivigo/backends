@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/badger
+module github.com/kivigo/backends/badger
 
 go 1.24.0
 

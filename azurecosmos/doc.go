@@ -5,7 +5,7 @@
 //
 // Usage:
 //
-//	import "github.com/kivigo/kivigo/backend/azurecosmos"
+//	import "github.com/kivigo/backends/azurecosmos"
 //
 //	// Create client with default options (emulator)
 //	client, err := azurecosmos.New(azurecosmos.DefaultOptions())

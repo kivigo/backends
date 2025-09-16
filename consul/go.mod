@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/consul
+module github.com/kivigo/backends/consul
 
 go 1.24.0
 

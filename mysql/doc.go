@@ -6,7 +6,7 @@ implementing all KiviGo interfaces including batch operations and health checks.
 
 Usage:
 
-	import "github.com/kivigo/kivigo/backend/mysql"
+	import "github.com/kivigo/backends/mysql"
 
 	// Create client with default options
 	opts := mysql.DefaultOptions()

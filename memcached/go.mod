@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/memcached
+module github.com/kivigo/backends/memcached
 
 go 1.24.0
 

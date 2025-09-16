@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/dynamodb
+module github.com/kivigo/backends/dynamodb
 
 go 1.24.0
 

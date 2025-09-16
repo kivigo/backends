@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/postgresql
+module github.com/kivigo/backends/postgresql
 
 go 1.24.0
 

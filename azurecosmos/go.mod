@@ -1,4 +1,4 @@
-module github.com/kivigo/kivigo/backend/azurecosmos
+module github.com/kivigo/backends/azurecosmos
 
 go 1.24.0
 

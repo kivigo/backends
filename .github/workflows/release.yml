@@ -77,6 +77,8 @@ jobs:
       backend_name: ${{ steps.validate.outputs.backend_name }}
       latest: ${{ steps.validate.outputs.latest }}
     steps:
+      - name: 🛎️ Checkout code
+        uses: actions/checkout@v4
       - name: 🔍 Validate version and backend_name
         id: validate
         run: |

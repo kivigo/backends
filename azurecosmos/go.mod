@@ -7,7 +7,7 @@ toolchain go1.24.5
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.16.0
 	github.com/Azure/azure-sdk-for-go/sdk/data/azcosmos v1.1.0
-	github.com/kivigo/kivigo v1.5.2-0.20250914210221-5ee7b6e0768f
+	github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039
 	github.com/stretchr/testify v1.11.1
 	github.com/testcontainers/testcontainers-go v0.38.0
 )

@@ -14,16 +14,18 @@ concurrency:
 "on":
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Release version (e.g., v1.5.0). Ignored if Automatic Tag is enabled.'
-        required: false
-        type: string
+
       backend_name:
         description: 'Backend to release (e.g., badger, redis, etcd, consul, local, or "core")'
         required: true
         type: string
       automatic_tag:
         description: 'Automatically increment version and construct tag'
+        required: true
+        default: true
+        type: boolean
+      latest:
+        description: 'Also create/update the "latest" tag for this backend'
         required: true
         default: true
         type: boolean
@@ -36,11 +38,10 @@ concurrency:
           - major
           - minor
           - patch
-      latest:
-        description: 'Also create/update the "latest" tag for this backend'
-        required: true
-        default: true
-        type: boolean
+      version:
+        description: 'Release version (e.g., v1.5.0). Ignored if Automatic Tag is enabled.'
+        required: false
+        type: string
 
 jobs:
   discover-backends:

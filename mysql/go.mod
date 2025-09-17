@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/go-sql-driver/mysql v1.9.3
-	github.com/kivigo/kivigo v1.5.2-0.20250914211630-6535becf59e9
+	github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039
 	github.com/stretchr/testify v1.11.1
 	github.com/testcontainers/testcontainers-go v0.38.0
 )

@@ -6,7 +6,7 @@ toolchain go1.24.5
 
 require (
 	github.com/dgraph-io/badger/v4 v4.8.0
-	github.com/kivigo/kivigo v1.5.2-0.20250914211630-6535becf59e9
+	github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039
 )
 
 require (
@@ -16,8 +16,6 @@ require (
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/google/flatbuffers v25.2.10+incompatible // indirect
-	github.com/kivigo/encoders v0.0.0-20250914204035-08372f8a1b0f // indirect
-	github.com/kivigo/encoders/json v0.1.0 // indirect
 	github.com/klauspost/compress v1.18.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
@@ -25,7 +23,6 @@ require (
 	go.opentelemetry.io/otel/metric v1.37.0 // indirect
 	go.opentelemetry.io/otel/trace v1.37.0 // indirect
 	golang.org/x/net v0.41.0 // indirect
-	golang.org/x/sync v0.17.0 // indirect
 	golang.org/x/sys v0.34.0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 )

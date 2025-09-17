@@ -19,14 +19,8 @@ github.com/google/flatbuffers v25.2.10+incompatible h1:F3vclr7C3HpB1k9mxCGRMXq6F
 github.com/google/flatbuffers v25.2.10+incompatible/go.mod h1:1AeVuKshWv4vARoZatz6mlQ0JxURH0Kv5+zNeJKJCa8=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
-github.com/kivigo/encoders v0.0.0-20250914204035-08372f8a1b0f h1:jQVRicYoMZKFb3bbiaZ1YoN5Cuylk/NoZDuztKrZlX0=
-github.com/kivigo/encoders v0.0.0-20250914204035-08372f8a1b0f/go.mod h1:M6PxAe+gg0i37W42ofzCy3Lgwmie6MiKfkBtYnkkbns=
-github.com/kivigo/encoders/json v0.1.0 h1:NzNhptqxllKFHTAvLjeJoutM/g6DeiHe2QOgchxz31I=
-github.com/kivigo/encoders/json v0.1.0/go.mod h1:543vsp/Rti6ecjDH/JcDa3ZisSZL2Eyb3q2s5mF0ALo=
-github.com/kivigo/kivigo v1.5.2-0.20250914210221-5ee7b6e0768f h1:EBcrL1zDTggDgVqGrZmzALuIgFA5xcM3M/vqm8bbPjI=
-github.com/kivigo/kivigo v1.5.2-0.20250914210221-5ee7b6e0768f/go.mod h1:e/K6QN4ieqCHxos29EcSxlHvcOKi9P1bIjtBuFpbcWQ=
-github.com/kivigo/kivigo v1.5.2-0.20250914211630-6535becf59e9 h1:Z/unMGDbJmIJbhMZEmRyLVnsqovDWiVcYYO7V0HVlF0=
-github.com/kivigo/kivigo v1.5.2-0.20250914211630-6535becf59e9/go.mod h1:e/K6QN4ieqCHxos29EcSxlHvcOKi9P1bIjtBuFpbcWQ=
+github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039 h1:gUofB0uvV43MIaED7vegTa4C9/yyLLpllOn7Mtm6PQE=
+github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039/go.mod h1:e/K6QN4ieqCHxos29EcSxlHvcOKi9P1bIjtBuFpbcWQ=
 github.com/klauspost/compress v1.18.0 h1:c/Cqfb0r+Yi+JtIEq73FWXVkRonBlf0CRNYc8Zttxdo=
 github.com/klauspost/compress v1.18.0/go.mod h1:2Pp+KzxcywXVXMr50+X0Q/Lsb43OQHYWRCY2AiWywWQ=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
@@ -45,8 +39,6 @@ go.opentelemetry.io/otel/trace v1.37.0 h1:HLdcFNbRQBE2imdSEgm/kwqmQj1Or1l/7bW6mx
 go.opentelemetry.io/otel/trace v1.37.0/go.mod h1:TlgrlQ+PtQO5XFerSPUYG0JSgGyryXewPGyayAWSBS0=
 golang.org/x/net v0.41.0 h1:vBTly1HeNPEn3wtREYfy4GZ/NECgw2Cnl+nK6Nz3uvw=
 golang.org/x/net v0.41.0/go.mod h1:B/K4NNqkfmg07DQYrbwvSluqCJOOXwUjeb/5lOisjbA=
-golang.org/x/sync v0.17.0 h1:l60nONMj9l5drqw6jlhIELNv9I0A4OFgRsG9k2oT9Ug=
-golang.org/x/sync v0.17.0/go.mod h1:9KTHXmSnoGruLpwFjVSX0lNNA75CykiMECbovNTZqGI=
 golang.org/x/sys v0.34.0 h1:H5Y5sJ2L2JRdyv7ROF1he/lPdvFsd0mJHFw2ThKHxLA=
 golang.org/x/sys v0.34.0/go.mod h1:BJP2sWEmIv4KK5OTEluFJCKSidICx8ciO85XgH3Ak8k=
 google.golang.org/protobuf v1.36.6 h1:z1NpPI8ku2WgiWnf+t9wTPsn6eP1L7ksHUlkfLvd9xY=

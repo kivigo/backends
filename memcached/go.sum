@@ -55,8 +55,8 @@ github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1 h1:X5VWvz21y3gzm9Nw/kaUeku/1+u
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1/go.mod h1:Zanoh4+gvIgluNqcfMVTJueD4wSS5hT7zTt4Mrutd90=
 github.com/kisielk/errcheck v1.5.0/go.mod h1:pFxgyoBC7bSaBwPgfKdkLd5X25qrDl4LWUI2bnpBCr8=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
-github.com/kivigo/kivigo v1.5.2-0.20250914211630-6535becf59e9 h1:Z/unMGDbJmIJbhMZEmRyLVnsqovDWiVcYYO7V0HVlF0=
-github.com/kivigo/kivigo v1.5.2-0.20250914211630-6535becf59e9/go.mod h1:e/K6QN4ieqCHxos29EcSxlHvcOKi9P1bIjtBuFpbcWQ=
+github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039 h1:gUofB0uvV43MIaED7vegTa4C9/yyLLpllOn7Mtm6PQE=
+github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039/go.mod h1:e/K6QN4ieqCHxos29EcSxlHvcOKi9P1bIjtBuFpbcWQ=
 github.com/klauspost/compress v1.18.0 h1:c/Cqfb0r+Yi+JtIEq73FWXVkRonBlf0CRNYc8Zttxdo=
 github.com/klauspost/compress v1.18.0/go.mod h1:2Pp+KzxcywXVXMr50+X0Q/Lsb43OQHYWRCY2AiWywWQ=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=

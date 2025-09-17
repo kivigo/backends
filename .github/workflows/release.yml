@@ -79,6 +79,8 @@ jobs:
     steps:
       - name: 🛎️ Checkout code
         uses: actions/checkout@v4
+      - name: Fetch all tags
+        run: git fetch --tags --force
       - name: 🔍 Validate version and backend_name
         id: validate
         run: |

@@ -1,4 +1,4 @@
-<img align="left" width="250"  src="https://raw.githubusercontent.com/kivigo/kivigo/refs/heads/main/website/static/img/logo-kivigo.png" alt="KiviGo Logo" />
+<img align="left" width="250"  src="https://kivigo.github.io/img/logo-kivigo.png" alt="KiviGo Logo" />
 
 # KiviGo Backends
 
@@ -6,11 +6,11 @@ This repository contains all backend modules for the [KiviGo](https://github.com
 
 **📄 Documentation**
 
-Full documentation for KiviGo, including backend usage and examples, is available at [https://kivigo.github.io/kivigo/](https://kivigo.github.io/kivigo/)
+Full documentation for KiviGo, including backend usage and examples, is available at [https://kivigo.github.io/](https://kivigo.github.io/)
 
 ## 📦 Available Backends
 
-See the [Backends overview](https://kivigo.github.io/kivigo/docs/backends/overview) for a complete list of available backends.
+See the [Backends overview](https://kivigo.github.io/docs/backends/overview) for a complete list of available backends.
 
 - **[badger](https://kivigo.github.io/kivigo/docs/backends/badger)**: High-performance local storage using BadgerDB
 - **[consul](https://kivigo.github.io/kivigo/docs/backends/consul)**: Distributed backend using Consul
@@ -73,7 +73,7 @@ See `.github/workflows/` for full configuration.
 4. Ensure all tests and lint checks pass.
 5. Open a Pull Request.
 
-Please follow the [main KiviGo project instructions](https://github.com/kivigo/kivigo) to ensure consistency and quality.
+Please follow the [main KiviGo project instructions](https://github.com/kivigo/) to ensure consistency and quality.
 
 ---
 

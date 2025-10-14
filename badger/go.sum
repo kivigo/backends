@@ -19,8 +19,8 @@ github.com/google/flatbuffers v25.2.10+incompatible h1:F3vclr7C3HpB1k9mxCGRMXq6F
 github.com/google/flatbuffers v25.2.10+incompatible/go.mod h1:1AeVuKshWv4vARoZatz6mlQ0JxURH0Kv5+zNeJKJCa8=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=
 github.com/google/go-cmp v0.7.0/go.mod h1:pXiqmnSA92OHEEa9HXL2W4E7lf9JzCmGVUdgjX3N/iU=
-github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039 h1:gUofB0uvV43MIaED7vegTa4C9/yyLLpllOn7Mtm6PQE=
-github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039/go.mod h1:e/K6QN4ieqCHxos29EcSxlHvcOKi9P1bIjtBuFpbcWQ=
+github.com/kivigo/kivigo v1.7.0 h1:z/9av1c+tEfKfOyaWA8VvHCpOocxranieryEyU/EorE=
+github.com/kivigo/kivigo v1.7.0/go.mod h1:e/K6QN4ieqCHxos29EcSxlHvcOKi9P1bIjtBuFpbcWQ=
 github.com/klauspost/compress v1.18.0 h1:c/Cqfb0r+Yi+JtIEq73FWXVkRonBlf0CRNYc8Zttxdo=
 github.com/klauspost/compress v1.18.0/go.mod h1:2Pp+KzxcywXVXMr50+X0Q/Lsb43OQHYWRCY2AiWywWQ=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=

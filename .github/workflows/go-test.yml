@@ -31,10 +31,10 @@ jobs:
           else
             changed_files=$(git diff --name-only HEAD~1 HEAD)
           fi
-          
+
           echo "Changed files:"
           echo "$changed_files"
-          
+
           # Check if main/core module changed (pkg/, root go files, go.mod/go.sum, etc.)
           main_changed="false"
           if echo "$changed_files" | grep -E "^(pkg/|go\.mod|go\.sum|[^/]*\.go)" > /dev/null; then
@@ -42,11 +42,11 @@ jobs:
             echo "✅ Main/core module files changed"
           fi
           echo "main=$main_changed" >> $GITHUB_OUTPUT
-          
+
           # Check which backend modules changed
           backend_changed="false"
           changed_backends_list=()
-          
+
           for backend_dir in */; do
             if [[ -d "$backend_dir" ]]; then
               backend_name=$(basename "$backend_dir")
@@ -57,9 +57,9 @@ jobs:
               fi
             fi
           done
-          
+
           echo "backends=$backend_changed" >> $GITHUB_OUTPUT
-          
+
           # Convert array to JSON for matrix
           if [ ${#changed_backends_list[@]} -gt 0 ]; then
             changed_backends_json=$(printf '%s\n' "${changed_backends_list[@]}" | jq -R . | jq -s -c .)
@@ -105,7 +105,7 @@ jobs:
 
       - name: 📤 Upload coverage to Coveralls
         uses: coverallsapp/github-action@v2
-        if: matrix.go-version == '1.24'  # Only upload coverage once
+        if: matrix.go-version == '1.24' # Only upload coverage once
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: coverage-main.out
@@ -124,8 +124,9 @@ jobs:
     steps:
       - name: 🛎️ Checkout code
         uses: actions/checkout@v4
-
-      - name: 🗄️ Cache Go modules
+      - name: �️ Sync Go workspace
+        run: go work sync
+      - name: �🗄️ Cache Go modules
         uses: actions/cache@v4
         with:
           path: |
@@ -143,6 +144,7 @@ jobs:
 
       - name: 📦 Install dependencies for ${{ matrix.backend }}
         run: |
+          go work sync
           cd ${{ matrix.backend }}
           go mod download
 
@@ -153,7 +155,7 @@ jobs:
 
       - name: 📤 Upload coverage to Coveralls
         uses: coverallsapp/github-action@v2
-        if: matrix.go-version == '1.24'  # Only upload coverage once per backend
+        if: matrix.go-version == '1.24' # Only upload coverage once per backend
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ${{ matrix.backend }}/coverage-${{ matrix.backend }}.out
@@ -182,7 +184,7 @@ jobs:
         run: |
           echo "## 🧪 Test Results Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          
+
           if [ "${{ needs.detect-changes.outputs.main-changed }}" = "true" ]; then
             echo "### 📦 Main Package" >> $GITHUB_STEP_SUMMARY
             if [ "${{ needs.test-main.result }}" = "success" ]; then
@@ -196,10 +198,10 @@ jobs:
             echo "### 📦 Main Package" >> $GITHUB_STEP_SUMMARY
             echo "⏭️ No changes detected - tests skipped" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 🔌 Backend Modules" >> $GITHUB_STEP_SUMMARY
-          
+
           if [ "${{ needs.detect-changes.outputs.backends-changed }}" = "true" ]; then
             echo "Changed backends: ${{ needs.detect-changes.outputs.changed-backends }}" >> $GITHUB_STEP_SUMMARY
             if [ "${{ needs.test-backends.result }}" = "success" ]; then
@@ -212,7 +214,7 @@ jobs:
           else
             echo "⏭️ No backend changes detected - tests skipped" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           echo "" >> $GITHUB_STEP_SUMMARY
           if [ "${{ needs.test-main.result }}" = "success" ] || [ "${{ needs.test-backends.result }}" = "success" ]; then
             echo "📊 **Coverage Report**: Check [Coveralls](https://coveralls.io/github/kivigo/kivigo) for detailed coverage information" >> $GITHUB_STEP_SUMMARY

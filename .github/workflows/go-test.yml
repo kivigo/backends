@@ -144,7 +144,10 @@ jobs:
         run: |
           cd ${{ matrix.backend }}
           go work use .
-          go mod download
+          if ! go mod download; then
+            echo "❌ Failed to download dependencies for ${{ matrix.backend }}"
+            exit 1
+          fi
 
       - name: 🧪 Run ${{ matrix.backend }} backend tests with coverage
         run: |

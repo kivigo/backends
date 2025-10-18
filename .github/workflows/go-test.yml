@@ -124,8 +124,6 @@ jobs:
     steps:
       - name: 🛎️ Checkout code
         uses: actions/checkout@v4
-      - name: �️ Sync Go workspace
-        run: go work sync
       - name: �🗄️ Cache Go modules
         uses: actions/cache@v4
         with:
@@ -144,8 +142,8 @@ jobs:
 
       - name: 📦 Install dependencies for ${{ matrix.backend }}
         run: |
-          go work sync
           cd ${{ matrix.backend }}
+          go work use .
           go mod download
 
       - name: 🧪 Run ${{ matrix.backend }} backend tests with coverage

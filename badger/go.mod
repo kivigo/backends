@@ -6,7 +6,7 @@ toolchain go1.24.5
 
 require (
 	github.com/dgraph-io/badger/v4 v4.8.0
-	github.com/kivigo/kivigo v1.5.2-0.20250914212215-f5f2f8b90039
+	github.com/kivigo/kivigo v1.7.0
 )
 
 require (

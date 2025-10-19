@@ -113,6 +113,14 @@ func (c *Client) BatchSetRaw(ctx context.Context, kv map[string][]byte) error {
 // BatchDelete deletes multiple keys from Consul.
 func (c *Client) BatchDelete(ctx context.Context, keys []string) error {
 	for _, key := range keys {
+		// Validate key format: must match Consul's allowed pattern
+		if key == "" {
+			continue // skip empty keys
+		}
+		// Optionally, add regex validation for stricter environments
+		// if !regexp.MustCompile(`^[a-zA-Z0-9,_./\\-?&=]+$`).MatchString(key) {
+		//     continue // skip invalid keys
+		// }
 		if err := c.Delete(ctx, key); err != nil {
 			return err
 		}

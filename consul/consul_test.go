@@ -189,6 +189,7 @@ func TestBatchSetRaw(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Logf("BatchSetRaw: setting keys: %v", tc.kv)
 			err := c.BatchSetRaw(ctx, tc.kv)
 			if tc.expectErr && err == nil {
 				t.Errorf("expected error for BatchSetRaw, got nil")
@@ -275,6 +276,7 @@ func TestBatchDelete(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Logf("BatchDelete: deleting keys: %v", tc.keys)
 			err := c.BatchDelete(ctx, tc.keys)
 			if tc.expectErr && err == nil {
 				t.Errorf("expected error for BatchDelete, got nil")

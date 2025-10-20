@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/kivigo/kivigo v1.7.0
-	github.com/redis/go-redis/v9 v9.14.0
+	github.com/redis/go-redis/v9 v9.14.1
 	github.com/stretchr/testify v1.11.1
 	github.com/testcontainers/testcontainers-go v0.39.0
 )
